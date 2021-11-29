@@ -1,0 +1,84 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace petrol_bunk
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int wheels = 0;
+            int price = 0;
+            string fueltype = "";
+            int total=0;
+            // MessageBox.Show("welcome");
+            listBox1.Items.Clear();
+            listBox1.Items.Add("WELCOME TO OUR PETROL BUNK");
+            listBox1.Items.Add("YOUR VECHILE NUMBER IS:  " + textBox1.Text);
+
+            //vechile type
+
+            if (radioButton1.Checked)
+            {
+                wheels = 2;
+                listBox1.Items.Add("YOUR VECHLIS TYPE IS : " + radioButton1.Text);
+            }
+            else if (radioButton2.Checked)
+            {
+                wheels = 4;
+                listBox1.Items.Add("YOUR VECHILS TYPE IS :" + radioButton2.Text);
+
+            }
+            else
+            {
+                MessageBox.Show("PLEASE SELECET VECHILE TYPE");
+            }
+
+            //FUEL TYPE
+
+            if (comboBox1.SelectedItem.ToString() == "PETROL")
+            {
+                price = 100;
+                fueltype = "PETROL";
+                listBox1.Items.Add("YOUR FULE IS :"+ fueltype);
+            }
+
+            else if(comboBox1.SelectedItem.ToString() == "DIESEL")
+            {
+                price = 50;
+                fueltype = "DIESEL";
+                listBox1.Items.Add("YOUR FULE IS :"+ fueltype);
+            
+            }
+            //BILL AMOUNT
+           if (checkBox1.Checked)
+            {
+                int temp = 5 * wheels;
+                listBox1.Items.Add("COST FOR FILLIGS AIR IS:" + temp);
+                total = temp;
+            }
+           if (checkBox2.Checked)
+           {
+               int liters = (int)numericUpDown1.Value;
+               int temp = liters * price;
+               listBox1.Items.Add("COST OF FILLINGS FUEL IS:" + temp);
+               total += temp;
+            
+           
+           }
+           listBox1.Items.Add("TOTAL AMOUNT" + total);
+        }
+    }
+}
